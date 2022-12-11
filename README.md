@@ -62,3 +62,7 @@ Includes:
 - Spec Setup
 
 Create: `tstemplate create jasmine PROJECT_NAME`
+
+## Keeping your project up to date
+
+Update your project with `tstemplate update PROJECT_TYPE`
