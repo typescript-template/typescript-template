@@ -18,7 +18,7 @@ module.exports = {
 		"indent": [2, "tab"],
 		"max-len": [1, 80],
 		"no-case-declarations": 1,
-		"no-console": 1,
+		"no-console": 0,
 		"no-debugger": 1,
 		"no-empty": 1,
 		"no-eval": 2,
