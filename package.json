@@ -4,7 +4,7 @@
 	"description": "typescript-template-cli",
 	"private": "true",
 	"bin": {
-		"typescript-template-cli": "./bin/index.js"
+		"tstemplate": "./bin/index.js"
 	},
 	"typescript-template": {
 		"base": "1.0.0",
@@ -25,10 +25,15 @@
 		"script": "ts-node scripts",
 		"publish": "npm run script -- publish"
 	},
+	"dependencies": {
+		"replace-in-file": "^6.3.5",
+		"yargs": "^17.6.2"
+	},
 	"devDependencies": {
 		"@istanbuljs/nyc-config-typescript": "^1.0.2",
 		"@types/jasmine": "^4.3.0",
 		"@types/node": "^18.11.9",
+		"@types/yargs": "^17.0.14",
 		"@typescript-eslint/eslint-plugin": "^5.44.0",
 		"@typescript-eslint/parser": "^5.44.0",
 		"eslint": "^8.28.0",

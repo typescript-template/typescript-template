@@ -1,38 +1,64 @@
-# typescript-template-cli - Readme
+# TypeScript Template
 
-## Development
+Scaffold a typescript app/cli/library with the modular TypeScript Template, and keep it up to date with the template update tool!
 
-Run a dev test with `npm start`.
+## Getting Started
 
-## Running Tests
+1. Install the TypeScript Template globally `npm i -g typescript-template-cli`
 
-To run unit tests, `npm run test`
+## Choose a Template Type
 
-## Scripts
+- **base** - Base project with npm, typescript, linting + formatting, and script-running setup
+- **jasmine** - Base project + Jasmine testing 
+- **node** - Node application
+- **lib** - npm Module / Library
+- **cli** - npm CLI Application
 
-You can write custom scripts in the `script/` directory. See `script/example.ts` as an example.
+### Base Setup
 
-Run your script with `npm run script -- example`
+Includes:
+- TypeScript
+- ESLint + Prettier
+- Documentation Files (Changelog, Readme)
+- Scripts Runner
+- VSCode Config + Debug
 
-## Compiling
+Create: `tstemplate create base PROJECT_NAME`
 
-### Debug Builds
+### Node App
 
-To compile a debug build, run `npm run build`. The build output will appear in the `./dist` folder.
+Includes:
+- Base Setup + Jasmine
+- App Bootstrapping (ts-async-bootstrap)
+- .env/Environment Schema Support (ts-appconfig)
+- Error Handler
+- Logger
+- Main Entrypoint
 
-### Prod Builds
+Create: `tstemplate create node PROJECT_NAME`
 
-To compile a production build, run `npm run lint:prod && npm run build`. The build output will appear in the `./dist` folder.
+### Library
 
-## More
+Includes:
+- Base Setup + Jasmine
+- Prep, Pack, and Publish Automation
+- NPM Deployment Automation
 
-### Generating Docs
+Create: `tstemplate create lib PROJECT_NAME`
 
-`npm run doc` and browse docs/index.html!
+### CLI
 
-### Deploying to npm
+Includes:
+- Base Setup + Jasmine + Library
+- Command Line Setup
 
-1. Did you bump your version?
-2. `npm run publish`
+Create: `tstemplate create cli PROJECT_NAME`
 
-You can test your build by running `npm run script -- pack`
+### Jasmine
+
+Includes:
+- Base Setup
+- Jasmine Test Runner
+- Spec Setup
+
+Create: `tstemplate create jasmine PROJECT_NAME`
