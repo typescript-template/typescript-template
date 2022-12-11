@@ -1,10 +1,10 @@
 {
-	"name": "{{project-name}}",
+	"name": "typescript-template-cli",
 	"version": "1.0.0",
-	"description": "{{project-name}}",
+	"description": "typescript-template-cli",
 	"private": "true",
 	"bin": {
-		"{{project-name}}": "./bin/index.js"
+		"typescript-template-cli": "./bin/index.js"
 	},
 	"typescript-template": {
 		"base": "1.0.0",
@@ -46,13 +46,13 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/{{project-org}}/{{project-name}}.git"
+		"url": "git+https://github.com/typescript-template/typescript-template-cli.git"
 	},
-	"author": "{{project-org}}",
+	"author": "typescript-template",
 	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/{{project-org}}/{{project-name}}/issues"
+		"url": "https://github.com/typescript-template/typescript-template-cli/issues"
 	},
-	"homepage": "https://github.com/{{project-org}}/{{project-name}}#readme",
+	"homepage": "https://github.com/typescript-template/typescript-template-cli#readme",
 	"keywords": []
 }

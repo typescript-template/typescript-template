@@ -1,1 +1,1 @@
-# {{project-name}} - Changelog
+# typescript-template-cli - Changelog

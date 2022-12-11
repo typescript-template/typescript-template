@@ -1,4 +1,4 @@
-# {{project-name}} - Readme
+# typescript-template-cli - Readme
 
 ## Development
 
