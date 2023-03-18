@@ -27,7 +27,7 @@
 	},
 	"dependencies": {
 		"replace-in-file": "^6.3.5",
-		"yargs": "^17.6.2"
+		"ts-commands": "^1.0.0"
 	},
 	"devDependencies": {
 		"@istanbuljs/nyc-config-typescript": "^1.0.2",
