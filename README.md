@@ -66,3 +66,7 @@ Create: `tstemplate create jasmine PROJECT_NAME`
 ## Keeping your project up to date
 
 Update your project with `tstemplate update PROJECT_TYPE`
+
+## Contributing & Development
+
+See [contributing.md](docs/contributing/contributing.md) for information on how to develop or contribute to this project!
