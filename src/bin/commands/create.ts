@@ -6,6 +6,7 @@ import { LogLevel } from 'ts-tiny-log/levels';
 import { Template } from '../../templates';
 import * as utils from '../../utils';
 import * as options from '../options';
+import { Command, CommandOptions } from 'ts-commands';
 
 interface Args {
 	type: Template;
@@ -18,58 +19,56 @@ interface Args {
 /**
  * Create a new project
  */
-export function create(yargs) {
-	return yargs
-		.command(
-			'create [type] [name]',
-			'create a new project',
-			(yargs) => {
-				return yargs
-					.positional(...options.type())
-					.positional(...options.name());
-			},
-			(argv: Args) => {
-				const cmd = new CommandRunner({
-					log: new Log({
-						level: argv.verbose ? LogLevel.debug : LogLevel.info,
-						shouldWriteTimestamp: argv.verbose,
-					}),
-					verbose: argv.verbose,
-				});
+export class CreateCommand extends Command {
+	signature = 'create [type] [name]';
+	description = 'Create a new project';
 
-				const name = argv.name;
-				const org = argv.org ?? argv.name;
-				const type = argv.type;
+	positional: CommandOptions[] = [options.type(), options.name()];
 
-				// Create project folder
-				utils.initProject(cmd, name);
+	options: CommandOptions[] = [
+		options.org(),
+		options.verbose(),
+		options.openWith(),
+	];
 
-				// "cd" into project
-				cmd.dir = path.join(cmd.dir, name);
+	async handle(argv: Args): Promise<void> {
+		const cmd = new CommandRunner({
+			log: new Log({
+				level: argv.verbose ? LogLevel.debug : LogLevel.info,
+				shouldWriteTimestamp: argv.verbose,
+			}),
+			verbose: argv.verbose,
+		});
 
-				// Merge the template
-				utils.mergeTemplate(cmd, type);
+		const name = argv.name;
+		const org = argv.org ?? argv.name;
+		const type = argv.type;
 
-				// Replace placeholders
-				utils.replacePlaceholder(cmd, 'project-name', name);
-				utils.replacePlaceholder(cmd, 'project-org', org);
+		// Create project folder
+		utils.initProject(cmd, name);
 
-				// Install npm dependencies
-				utils.npmInstall(cmd);
+		// "cd" into project
+		cmd.dir = path.join(cmd.dir, name);
 
-				// Commit changes
-				utils.commit(
-					cmd,
-					`Project created using TypeScript Template (${type})`
-				);
+		// Merge the template
+		utils.mergeTemplate(cmd, type);
 
-				// Open project!
-				if (argv.openWith) {
-					utils.openWith(cmd, argv.openWith);
-				}
-			}
-		)
-		.option(...options.org())
-		.option(...options.verbose())
-		.option(...options.openWith());
+		// Replace placeholders
+		utils.replacePlaceholder(cmd, 'project-name', name);
+		utils.replacePlaceholder(cmd, 'project-org', org);
+
+		// Install npm dependencies
+		utils.npmInstall(cmd);
+
+		// Commit changes
+		utils.commit(
+			cmd,
+			`Project created using TypeScript Template (${type})`
+		);
+
+		// Open project!
+		if (argv.openWith) {
+			utils.openWith(cmd, argv.openWith);
+		}
+	}
 }
