@@ -5,6 +5,7 @@ import { LogLevel } from 'ts-tiny-log/levels';
 import { Template } from '../../templates';
 import * as utils from '../../utils';
 import * as options from '../options';
+import { Command, CommandOptions } from 'ts-commands';
 
 interface Args {
 	type: Template;
@@ -17,28 +18,25 @@ interface Args {
 /**
  * Create a new project
  */
-export function update(yargs) {
-	return yargs
-		.command(
-			'update [type]',
-			'update current project',
-			(yargs) => {
-				return yargs.positional(...options.type());
-			},
-			(argv: Args) => {
-				const cmd = new CommandRunner({
-					log: new Log({
-						level: argv.verbose ? LogLevel.debug : LogLevel.info,
-						shouldWriteTimestamp: argv.verbose,
-					}),
-					verbose: argv.verbose,
-				});
+export class UpdateCommand extends Command {
+	signature = 'update [type]';
+	description = 'Update current project';
 
-				const type = argv.type;
+	positional: CommandOptions[] = [options.type()];
+	options: CommandOptions[] = [options.verbose()];
 
-				// Merge the template
-				utils.mergeTemplate(cmd, type, true);
-			}
-		)
-		.option(...options.verbose());
+	async handle(argv: any): Promise<void> {
+		const cmd = new CommandRunner({
+			log: new Log({
+				level: argv.verbose ? LogLevel.debug : LogLevel.info,
+				shouldWriteTimestamp: argv.verbose,
+			}),
+			verbose: argv.verbose,
+		});
+
+		const type = argv.type;
+
+		// Merge the template
+		utils.mergeTemplate(cmd, type, true);
+	}
 }

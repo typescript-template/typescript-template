@@ -1,4 +1,4 @@
-import { create } from './create';
-import { update } from './update';
+import { CreateCommand } from './create';
+import { UpdateCommand } from './update';
 
-export const commands = [create, update];
+export const commands = [CreateCommand, UpdateCommand];
