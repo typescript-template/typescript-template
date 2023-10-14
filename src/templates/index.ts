@@ -4,6 +4,7 @@ export const templates = {
 	lib: null,
 	jasmine: null,
 	node: null,
+	riao: null,
 };
 
 export type Template = keyof typeof templates;
