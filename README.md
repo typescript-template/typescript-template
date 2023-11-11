@@ -4,7 +4,7 @@ Scaffold a typescript app/cli/library with the modular TypeScript Template, and 
 
 ## Getting Started
 
-1. Install the TypeScript Template globally `npm i -g typescript-template-cli`
+1. Install the TypeScript Template globally `npm i -g @typescript-template/cli`
 
 ## Choose a Template Type
 
