@@ -16,7 +16,7 @@ interface Args {
 }
 
 /**
- * Create a new project
+ * Update an existing project
  */
 export class UpdateCommand extends Command {
 	signature = 'update [type]';
