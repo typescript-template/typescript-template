@@ -1,4 +1,5 @@
 export const templates = {
+	remote: null,
 	base: null,
 	cli: null,
 	lib: null,

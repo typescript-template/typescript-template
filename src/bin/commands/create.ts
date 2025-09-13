@@ -14,6 +14,7 @@ interface Args {
 	branch: string;
 	openWith: string;
 	org: string;
+	remoteUrl?: string;
 	verbose: boolean;
 }
 
@@ -31,6 +32,7 @@ export class CreateCommand extends Command {
 		options.org(),
 		options.verbose(),
 		options.openWith(),
+		options.remoteUrl(),
 	];
 
 	async handle(argv: Args): Promise<void> {
@@ -46,6 +48,7 @@ export class CreateCommand extends Command {
 		const org = argv.org ?? argv.name;
 		const type = argv.type;
 		const branch = argv.branch ?? 'master';
+		const remoteUrl = argv.remoteUrl;
 
 		// Create project folder
 		utils.initProject(cmd, name);
@@ -54,7 +57,7 @@ export class CreateCommand extends Command {
 		cmd.dir = path.join(cmd.dir, name);
 
 		// Merge the template
-		utils.mergeTemplate({ runner: cmd, type, branch });
+		utils.mergeTemplate({ runner: cmd, type, branch, remoteUrl });
 
 		// Replace placeholders
 		utils.replacePlaceholder(cmd, 'project-name', name);

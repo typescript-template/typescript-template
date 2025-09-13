@@ -13,6 +13,7 @@ interface Args {
 	branch: string;
 	openWith: string;
 	org: string;
+	remoteUrl?: string;
 	verbose: boolean;
 }
 
@@ -24,7 +25,11 @@ export class UpdateCommand extends Command {
 	description = 'Update current project';
 
 	positional: CommandOptions[] = [options.type()];
-	options: CommandOptions[] = [options.branch(), options.verbose()];
+	options: CommandOptions[] = [
+		options.branch(),
+		options.verbose(),
+		options.remoteUrl(),
+	];
 
 	async handle(argv: Args): Promise<void> {
 		const cmd = new CommandRunner({
@@ -37,6 +42,7 @@ export class UpdateCommand extends Command {
 
 		const type = argv.type;
 		const branch = argv.branch ?? 'master';
+		const remoteUrl = argv.remoteUrl;
 
 		// Merge the template
 		utils.mergeTemplate({
@@ -44,6 +50,7 @@ export class UpdateCommand extends Command {
 			type,
 			branch,
 			isExistingProject: true,
+			remoteUrl,
 		});
 	}
 }
