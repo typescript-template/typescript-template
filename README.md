@@ -63,6 +63,11 @@ Includes:
 
 Create: `tstemplate create jasmine PROJECT_NAME`
 
+### Custom Repo
+
+`tstemplate create remote PROJECT_NAME --remoteUrl=D:/Dev/my-project/.git --branch=main`
+`tstemplate create remote PROJECT_NAME --remoteUrl=ssh://github.com/my-org/my-project.git`
+
 ## Keeping your project up to date
 
 Update your project with `tstemplate update PROJECT_TYPE`
