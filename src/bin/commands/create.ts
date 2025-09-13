@@ -11,6 +11,7 @@ import { Command, CommandOptions } from 'ts-commands';
 interface Args {
 	type: Template;
 	name: string;
+	branch: string;
 	openWith: string;
 	org: string;
 	verbose: boolean;
@@ -26,6 +27,7 @@ export class CreateCommand extends Command {
 	positional: CommandOptions[] = [options.type(), options.name()];
 
 	options: CommandOptions[] = [
+		options.branch(),
 		options.org(),
 		options.verbose(),
 		options.openWith(),
@@ -43,6 +45,7 @@ export class CreateCommand extends Command {
 		const name = argv.name;
 		const org = argv.org ?? argv.name;
 		const type = argv.type;
+		const branch = argv.branch ?? 'master';
 
 		// Create project folder
 		utils.initProject(cmd, name);
@@ -51,7 +54,7 @@ export class CreateCommand extends Command {
 		cmd.dir = path.join(cmd.dir, name);
 
 		// Merge the template
-		utils.mergeTemplate(cmd, type);
+		utils.mergeTemplate({ runner: cmd, type, branch });
 
 		// Replace placeholders
 		utils.replacePlaceholder(cmd, 'project-name', name);

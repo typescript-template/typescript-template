@@ -10,6 +10,7 @@ import { Command, CommandOptions } from 'ts-commands';
 interface Args {
 	type: Template;
 	name: string;
+	branch: string;
 	openWith: string;
 	org: string;
 	verbose: boolean;
@@ -23,9 +24,9 @@ export class UpdateCommand extends Command {
 	description = 'Update current project';
 
 	positional: CommandOptions[] = [options.type()];
-	options: CommandOptions[] = [options.verbose()];
+	options: CommandOptions[] = [options.branch(), options.verbose()];
 
-	async handle(argv: any): Promise<void> {
+	async handle(argv: Args): Promise<void> {
 		const cmd = new CommandRunner({
 			log: new Log({
 				level: argv.verbose ? LogLevel.debug : LogLevel.info,
@@ -35,8 +36,14 @@ export class UpdateCommand extends Command {
 		});
 
 		const type = argv.type;
+		const branch = argv.branch ?? 'master';
 
 		// Merge the template
-		utils.mergeTemplate(cmd, type, true);
+		utils.mergeTemplate({
+			runner: cmd,
+			type,
+			branch,
+			isExistingProject: true,
+		});
 	}
 }
