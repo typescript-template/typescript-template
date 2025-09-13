@@ -11,8 +11,11 @@ import { Command, CommandOptions } from 'ts-commands';
 interface Args {
 	type: Template;
 	name: string;
+	branch: string;
 	openWith: string;
 	org: string;
+	remoteUrl?: string;
+	templatize?: boolean;
 	verbose: boolean;
 }
 
@@ -26,9 +29,12 @@ export class CreateCommand extends Command {
 	positional: CommandOptions[] = [options.type(), options.name()];
 
 	options: CommandOptions[] = [
+		options.branch(),
 		options.org(),
 		options.verbose(),
 		options.openWith(),
+		options.remoteUrl(),
+		options.templatize(),
 	];
 
 	async handle(argv: Args): Promise<void> {
@@ -43,6 +49,8 @@ export class CreateCommand extends Command {
 		const name = argv.name;
 		const org = argv.org ?? argv.name;
 		const type = argv.type;
+		const branch = argv.branch ?? 'master';
+		const remoteUrl = argv.remoteUrl;
 
 		// Create project folder
 		utils.initProject(cmd, name);
@@ -51,11 +59,13 @@ export class CreateCommand extends Command {
 		cmd.dir = path.join(cmd.dir, name);
 
 		// Merge the template
-		utils.mergeTemplate(cmd, type);
+		utils.mergeTemplate({ runner: cmd, type, branch, remoteUrl });
 
 		// Replace placeholders
-		utils.replacePlaceholder(cmd, 'project-name', name);
-		utils.replacePlaceholder(cmd, 'project-org', org);
+		if (!argv.templatize) {
+			utils.replacePlaceholder(cmd, 'project-name', name);
+			utils.replacePlaceholder(cmd, 'project-org', org);
+		}
 
 		// Install npm dependencies
 		utils.npmInstall(cmd);
