@@ -6,6 +6,11 @@ export const templates = {
 	jasmine: null,
 	node: null,
 	riao: null,
+	angular: null,
+	vite: null,
+	electron: null,
+	three: null,
+	chrome: null,
 };
 
 export type Template = keyof typeof templates;
