@@ -15,6 +15,7 @@ interface Args {
 	openWith: string;
 	org: string;
 	remoteUrl?: string;
+	templatize?: boolean;
 	verbose: boolean;
 }
 
@@ -33,6 +34,7 @@ export class CreateCommand extends Command {
 		options.verbose(),
 		options.openWith(),
 		options.remoteUrl(),
+		options.templatize(),
 	];
 
 	async handle(argv: Args): Promise<void> {
@@ -60,8 +62,10 @@ export class CreateCommand extends Command {
 		utils.mergeTemplate({ runner: cmd, type, branch, remoteUrl });
 
 		// Replace placeholders
-		utils.replacePlaceholder(cmd, 'project-name', name);
-		utils.replacePlaceholder(cmd, 'project-org', org);
+		if (!argv.templatize) {
+			utils.replacePlaceholder(cmd, 'project-name', name);
+			utils.replacePlaceholder(cmd, 'project-org', org);
+		}
 
 		// Install npm dependencies
 		utils.npmInstall(cmd);
