@@ -63,6 +63,16 @@ Includes:
 
 Create: `tstemplate create jasmine PROJECT_NAME`
 
+### Rest API
+
+Includes:
+- @riao/dbal
+- @riao/rest
+- api-machine
+- valsan (validation)
+
+Create `tstemplate create rest PROJECT_NAME --branch=main`
+
 ### Custom Repo
 
 `tstemplate create remote PROJECT_NAME --remoteUrl=D:/Dev/my-project/.git --branch=main`

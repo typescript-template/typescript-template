@@ -6,6 +6,7 @@ export const templates = {
 	jasmine: null,
 	node: null,
 	riao: null,
+	rest: null,
 	angular: null,
 	vite: null,
 	electron: null,
