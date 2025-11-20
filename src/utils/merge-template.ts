@@ -15,8 +15,13 @@ export function mergeTemplate(options: {
 	branch: string;
 	remoteUrl?: string;
 }): void {
-	const { runner, type, isExistingProject, branch, remoteUrl } = options;
-	let remoteName: string, url: string;
+	let remoteName: string;
+	let url: string;
+	let branch: string = options.branch;
+	const type = options.type;
+	const runner = options.runner;
+	const isExistingProject = !!options.isExistingProject;
+	const remoteUrl = options.remoteUrl;
 
 	if (options.remoteUrl) {
 		remoteName = 'template-' + type.replace(/[^a-zA-Z0-9]+/g, '_');
@@ -24,7 +29,16 @@ export function mergeTemplate(options: {
 	}
 	else {
 		remoteName = 'template-' + type;
-		url = templates[type] ?? baseUrl + type;
+
+		if (!(type in templates)) {
+			throw new Error(`Template type "${type}" does not exist`);
+		}
+
+		url = baseUrl + type;
+	}
+
+	if (!branch) {
+		branch = templates[type]?.branch || 'master';
 	}
 
 	try {
