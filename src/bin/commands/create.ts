@@ -49,7 +49,7 @@ export class CreateCommand extends Command {
 		const name = argv.name;
 		const org = argv.org ?? argv.name;
 		const type = argv.type;
-		const branch = argv.branch ?? 'master';
+		const branch = argv.branch;
 		const remoteUrl = argv.remoteUrl;
 
 		// Create project folder

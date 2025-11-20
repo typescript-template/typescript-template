@@ -71,7 +71,7 @@ Includes:
 - api-machine
 - valsan (validation)
 
-Create `tstemplate create rest PROJECT_NAME --branch=main`
+Create `tstemplate create rest PROJECT_NAME`
 
 ### Custom Repo
 

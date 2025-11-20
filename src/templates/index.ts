@@ -1,4 +1,8 @@
-export const templates = {
+export type TemplateConfig = {
+	branch?: string;
+};
+
+export const templates: Record<string, TemplateConfig | null> = {
 	remote: null,
 	base: null,
 	cli: null,
@@ -6,7 +10,7 @@ export const templates = {
 	jasmine: null,
 	node: null,
 	riao: null,
-	rest: null,
+	rest: { branch: 'main' },
 	angular: null,
 	vite: null,
 	electron: null,
