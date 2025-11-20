@@ -57,10 +57,10 @@ Create a blank node app.
 
 Includes:
 - Base Setup + Jasmine
-- App Bootstrapping (ts-async-bootstrap)
-- .env/Environment Schema Support (ts-appconfig)
-- Error Handler
-- Logger
+- App Bootstrapping ([ts-async-bootstrap](https://www.npmjs.com/package/ts-async-bootstrap))
+- .env/Environment Schema Support ([ts-appconfig](https://www.npmjs.com/package/ts-appconfig))
+- [Error Handler](https://www.npmjs.com/package/ts-error-handler)
+- [Logger](https://www.npmjs.com/package/ts-tiny-log)
 - Main Entrypoint
 
 **Create**: `tstemplate create node PROJECT_NAME`
@@ -104,8 +104,8 @@ Includes:
 Create a node app with a @riao/dbal database
 
 Includes:
-- @riao/dbal
-- @riao/mysql
+- [@riao/dbal](https://www.npmjs.com/package/@riao/dbal)
+- [@riao/mysql](https://www.npmjs.com/package/@riao/mysql)
 
 **Create**: `tstemplate create riao PROJECT_NAME `
 
@@ -114,10 +114,10 @@ Includes:
 Create a rest api with @riao/rest
 
 Includes:
-- @riao/dbal
-- @riao/rest
-- api-machine
-- valsan (validation)
+- [@riao/dbal](https://www.npmjs.com/package/@riao/dbal)
+- [@riao/rest](https://www.npmjs.com/package/@riao/rest)
+- [api-machine](https://www.npmjs.com/package/api-machine)
+- [valsan](https://www.npmjs.com/package/valsan)
 
 **Create**: `tstemplate create rest PROJECT_NAME`
 
