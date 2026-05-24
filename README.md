@@ -1,5 +1,10 @@
 # TypeScript Template
 
+> TypeScript Template is now part of [remrg](https://www.npmjs.com/package/@remrg/cli)!
+>
+> Please use remrg for all new projects.
+>
+
 Scaffold a typescript app/cli/library with the modular TypeScript Template, and keep it up to date with the template update tool!
 
 ## Getting Started
